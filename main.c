@@ -73,6 +73,7 @@ int xdp_prog_main(struct xdp_md *ctx) {
     // Filters
     if (udph->source == htons(5350) || udph->source == htons(5351) || udph->source == htons(5352) || udph->source == htons(5353) || udph->source == htons(5354) || udph->source == htons(5355) || udph->source == htons(5356) || udph->source == htons(5357)) {
         bpf_printk("Detected C2 packet from %d:%d\n", iph->saddr, ntohs(udph->source));
+	return XDP_DROP;
     }
 
     return XDP_PASS;
